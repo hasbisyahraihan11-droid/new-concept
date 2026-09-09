@@ -1,0 +1,668 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #05020d;
+    color: white;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body {
+    background:
+        radial-gradient(circle at center, #21103c 0%, #090315 45%, #020106 100%);
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(1px 1px at 80% 20%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 30% 80%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 10% 60%, white, transparent);
+    background-size: 250px 250px;
+    animation: starsMove 15s linear infinite;
+    opacity: .7;
+}
+
+@keyframes starsMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-250px);
+    }
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 20px;
+
+    background:
+        radial-gradient(circle, #2b1249, #08020f 65%);
+}
+
+.small-text {
+    opacity: .7;
+    margin-bottom: 15px;
+}
+
+.intro h1 {
+    font-size: clamp(35px, 8vw, 70px);
+    margin-bottom: 35px;
+
+    text-shadow:
+        0 0 10px #ff8ad8,
+        0 0 30px #ff55c8;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+#startBtn {
+    padding: 14px 30px;
+    border-radius: 50px;
+
+    color: white;
+    background: linear-gradient(135deg, #ff4fa3, #9b4dff);
+
+    font-size: 17px;
+
+    box-shadow:
+        0 0 15px #ff4fa3,
+        0 0 40px rgba(255, 79, 163, .4);
+
+    transition: .3s;
+}
+
+#startBtn:hover {
+    transform: scale(1.08);
+}
+
+/* =========================
+   WORLD
+========================= */
+
+.world {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.title {
+    position: absolute;
+    top: 5%;
+    text-align: center;
+    z-index: 10;
+}
+
+.title h1 {
+    font-size: clamp(25px, 5vw, 45px);
+
+    text-shadow:
+        0 0 10px #ff77c8,
+        0 0 25px #ff4fb3;
+}
+
+.title h1 span {
+    color: #ff8ed3;
+}
+
+.title p {
+    margin-top: 8px;
+    opacity: .7;
+}
+
+/* =========================
+   SPACE
+========================= */
+
+.space {
+    position: absolute;
+
+    width: min(650px, 100vw);
+    height: min(650px, 100vw);
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -47%);
+
+    perspective: 1000px;
+}
+
+/* =========================
+   PLANET
+========================= */
+
+.planet {
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffd6ef 0%,
+            #ff7bc4 15%,
+            #9a45c7 45%,
+            #32165e 75%,
+            #10051e 100%
+        );
+
+    box-shadow:
+        0 0 30px #ff70c9,
+        0 0 80px rgba(207, 65, 255, .7),
+        inset -30px -30px 60px rgba(0,0,0,.5);
+
+    animation: planetFloat 4s ease-in-out infinite;
+
+    z-index: 5;
+}
+
+@keyframes planetFloat {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-10px);
+    }
+}
+
+/* =========================
+   PHOTO
+========================= */
+
+.photo-container {
+    position: absolute;
+
+    width: 135px;
+    height: 135px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    border: 5px solid rgba(255,255,255,.8);
+
+    box-shadow:
+        0 0 15px white,
+        0 0 35px #ff72c6;
+
+    z-index: 10;
+}
+
+.photo-container img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/* =========================
+   PLANET LIGHT
+========================= */
+
+.planet-light {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.35),
+        transparent 40%
+    );
+
+    pointer-events: none;
+}
+
+/* =========================
+   ORBITS
+========================= */
+
+.orbit {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%) rotateX(65deg);
+}
+
+.orbit1 {
+    width: 390px;
+    height: 390px;
+
+    animation: orbitSpin 14s linear infinite;
+}
+
+.orbit2 {
+    width: 520px;
+    height: 520px;
+
+    transform: translate(-50%, -50%) rotateX(65deg) rotateZ(35deg);
+
+    animation: orbitSpin2 20s linear infinite;
+}
+
+@keyframes orbitSpin {
+    from {
+        transform: translate(-50%, -50%) rotateX(65deg) rotateZ(0);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotateX(65deg) rotateZ(360deg);
+    }
+}
+
+@keyframes orbitSpin2 {
+    from {
+        transform: translate(-50%, -50%) rotateX(65deg) rotateZ(35deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotateX(65deg) rotateZ(395deg);
+    }
+}
+
+/* =========================
+   WORDS
+========================= */
+
+.word {
+    position: absolute;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(5px);
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    font-size: 13px;
+
+    box-shadow: 0 0 15px rgba(255,100,200,.3);
+
+    animation: wordFloat 4s ease-in-out infinite;
+}
+
+.w1 {
+    top: 20%;
+    left: 8%;
+}
+
+.w2 {
+    top: 12%;
+    right: 5%;
+    animation-delay: 1s;
+}
+
+.w3 {
+    bottom: 20%;
+    left: 5%;
+    animation-delay: 2s;
+}
+
+.w4 {
+    bottom: 10%;
+    right: 7%;
+    animation-delay: .5s;
+}
+
+.w5 {
+    top: 48%;
+    left: 0;
+    animation-delay: 1.5s;
+}
+
+.w6 {
+    top: 48%;
+    right: 0;
+    animation-delay: 2.5s;
+}
+
+@keyframes wordFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* =========================
+   FLOWERS
+========================= */
+
+.flower {
+    position: absolute;
+
+    font-size: 35px;
+
+    filter: drop-shadow(0 0 10px #ff76c8);
+
+    animation: flowerFloat 5s ease-in-out infinite;
+}
+
+.f1 {
+    top: 10%;
+    left: 35%;
+}
+
+.f2 {
+    top: 25%;
+    right: 8%;
+    animation-delay: 1s;
+}
+
+.f3 {
+    bottom: 25%;
+    left: 10%;
+    animation-delay: 2s;
+}
+
+.f4 {
+    bottom: 8%;
+    left: 40%;
+    animation-delay: 1.5s;
+}
+
+.f5 {
+    top: 42%;
+    right: 8%;
+    animation-delay: .5s;
+}
+
+@keyframes flowerFloat {
+    0%,100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(15deg);
+    }
+}
+
+/* =========================
+   HEARTS
+========================= */
+
+.heart {
+    position: absolute;
+
+    font-size: 22px;
+
+    animation: heartFloat 5s infinite ease-in-out;
+}
+
+.h1 {
+    left: 20%;
+    top: 35%;
+}
+
+.h2 {
+    right: 20%;
+    top: 65%;
+    animation-delay: 1.5s;
+}
+
+.h3 {
+    left: 60%;
+    top: 15%;
+    animation-delay: 3s;
+}
+
+@keyframes heartFloat {
+    0%,100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-25px) scale(1.15);
+    }
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.letter-btn {
+    position: absolute;
+
+    bottom: 7%;
+
+    padding: 13px 25px;
+
+    border-radius: 50px;
+
+    color: white;
+
+    background: linear-gradient(135deg,#ff4fa3,#9c4dff);
+
+    box-shadow: 0 0 25px rgba(255,70,180,.5);
+
+    font-size: 15px;
+
+    z-index: 20;
+
+    transition: .3s;
+}
+
+.letter-btn:hover {
+    transform: scale(1.07);
+}
+
+.hint {
+    position: absolute;
+
+    bottom: 2%;
+
+    opacity: .4;
+
+    font-size: 11px;
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,.7);
+
+    backdrop-filter: blur(10px);
+}
+
+.letter-box {
+    position: relative;
+
+    width: min(500px, 100%);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 35px 28px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.04)
+        );
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    box-shadow:
+        0 0 40px rgba(255,70,180,.35);
+
+    text-align: center;
+}
+
+.envelope {
+    font-size: 50px;
+
+    margin-bottom: 10px;
+}
+
+.letter-box h2 {
+    margin-bottom: 20px;
+
+    color: #ff9bd8;
+}
+
+.letter-box p {
+    line-height: 1.7;
+
+    margin: 15px 0;
+
+    opacity: .9;
+}
+
+.letter-box h3 {
+    margin-top: 25px;
+
+    color: #ff9bd8;
+}
+
+.close {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    color: white;
+
+    background: rgba(255,255,255,.1);
+
+    font-size: 25px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .planet {
+        width: 190px;
+        height: 190px;
+    }
+
+    .photo-container {
+        width: 115px;
+        height: 115px;
+    }
+
+    .orbit1 {
+        width: 310px;
+        height: 310px;
+    }
+
+    .orbit2 {
+        width: 400px;
+        height: 400px;
+    }
+
+    .word {
+        font-size: 10px;
+        padding: 6px 9px;
+    }
+
+    .flower {
+        font-size: 27px;
+    }
+
+    .title {
+        top: 4%;
+        padding: 0 15px;
+    }
+
+    .title p {
+        font-size: 12px;
+    }
+}
